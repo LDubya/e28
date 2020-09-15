@@ -1,0 +1,30 @@
+#chooseCharacter{
+    display: grid;
+}
+
+#chooseCharacter .title,
+#chooseCharacter .characters{
+    display: grid;
+    margin: auto;
+}
+
+#chooseCharacter .title{
+    text-align: center;
+}
+
+#chooseCharacter .characters{
+    grid-template-columns: auto auto;
+}
+
+#chooseCharacter .characters{
+    grid-gap: 40px;
+}
+
+#chooseCharacter h3.seizureWarning{
+    text-transform: uppercase;
+}
+
+#chooseCharacter .seizureWarningContainer{
+    max-width: 300px;
+    margin: 50px auto;
+}

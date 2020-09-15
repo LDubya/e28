@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Street Referendum 1</title>
+    <meta charset="utf-8"  />
+    <script src="/injex.js" ></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/chooseCharacter.css">
+    <link rel="stylesheet" href="/fight.css">
+</head>
+
+<body>
+
+    <!-- choose your character -->
+    <div id="chooseCharacter">
+        <div class="title">
+            <!-- <h1>Street Referendum 1</h1> -->
+            <img class="gameTitle" src="assets/street_referendum.png" alt="Street Referendum" />
+            <h2>Choose your fighter</h2>
+        </div>
+        <div class="characters">
+            <button class="biden">Biden</button>
+            <button class="trump">Trump</button>
+        </div>
+        <div class="seizureWarningContainer">
+            <h3 class="seizureWarning"> Seizure warning</h3>
+            <p>
+                WARNING: This video game may potentially trigger seizures for people with photosensitive epilepsy. 
+                User discretion advised.
+            </p>
+        </div>
+    </div>
+
+     <!-- fight! -->
+    <div id="fight">
+        <div class="title">
+            <h1 class="fightPrompt">
+                <img id="fightText" src="assets/fight.png" alt="Fight" />
+                
+                <img id="you_lose" src="assets/you_lose.png" alt="You lose" />
+                <img id="you_win" src="assets/you_win.png" alt="You win" />
+                <img id="polls_were_wrong" src="assets/polls_were_wrong.png" alt="Polls were wrong" />
+            </h1>
+        </div>
+        <div class="gameOfChance">
+            <button id="push">Campaign!</button>
+            <button id="restartButton">4 more years!</button>
+        </div>
+        <div class="fighters">
+            <p class="fighterObjects">
+                <span class="fighterObjectsOffset">
+                    <span class="bidenFighter">Biden</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="trumpFighter">Trump</span>
+                </span>
+            </p>
+        </div>
+        <div class="scoreboard">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Biden
+                        </td>
+                        <td>
+                            Trump
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span id="bidenPoints">50</span>
+                        </td>
+                        <td>
+                            <span id="trumpPoints">50</span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tr>
+                    <td>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
