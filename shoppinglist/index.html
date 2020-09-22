@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js' defer></script>
+    <script src='index.js' defer></script>
+</head>
+<body>
+    <div id='app'>
+        <h1>
+            Shoping list
+        </h1>
+        <label>
+
+        </label for="item">Item:</label>
+        <input type='text' name="item" v-model="listItem" />
+        <button v-on:click='if(listItem.length > 0){listItems.push(listItem)}; listItem=""' >Add</button>
+
+        <p v-if="listItems.length == 0">
+            You have no items in your list.
+        </p>
+        <p v-if="listItems.length > 0">
+            Item count: {{listItems.length}}
+        </p>
+
+        <ul>
+            <li v-for='thisItem in listItems'>{{ thisItem }}</li>
+        </ul>
+    </div>
+</body>
+</html>
