@@ -8,8 +8,21 @@
     <script src='index.js' defer></script>
 </head>
 <body>
+
+    <script type='text/x-template' id='test-component'>
+        <span>
+           {{ title }}
+       </span>
+    </script>
+
     <div id='app'>
+        <ul>
+            <li v-for='thisItem in listItems'>
+                <test-component :title="thisItem" />
+            </li>
+        </ul>
         
     </div>
+
 </body>
 </html>
