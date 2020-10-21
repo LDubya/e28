@@ -1,0 +1,154 @@
+[v-cloak] { 
+    display: none; 
+} 
+
+/* main styles */
+
+
+#chooseCharacter,
+#fight{
+    margin: auto;
+    margin-top: 50px;
+}
+
+img{
+    width: 80%;
+    margin: 30px auto;
+}
+
+button{
+    padding: 20px;
+    border-radius: 4px;
+    font-size: 30px;
+}
+
+
+/* choose character */
+
+#chooseCharacter{
+    display: grid;
+}
+
+#chooseCharacter .title,
+#chooseCharacter .characters{
+    display: grid;
+    margin: auto;
+}
+
+#chooseCharacter .title{
+    text-align: center;
+}
+
+#chooseCharacter .characters{
+    grid-template-columns: auto auto;
+}
+
+#chooseCharacter .characters{
+    grid-gap: 40px;
+}
+
+#chooseCharacter h3.seizureWarning{
+    text-transform: uppercase;
+}
+
+#chooseCharacter .seizureWarningContainer{
+    max-width: 300px;
+    margin: 50px auto;
+}
+
+
+/* fight  */
+
+#fight{
+    display: grid;
+}
+
+#fight .title,
+#fight .gameOfChance,
+#fight .scoreboard,
+#fight .fighters{
+    display: flex;
+    margin: auto;
+}
+
+.fightPrompt{
+    text-align: center;
+}
+
+#fight .fighters{
+    width: 70%;
+    border: 1px solid #000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#fight .fighterObjects{
+    /* position: relative; */
+    /* left: 50%; */
+    margin: auto;
+}
+
+#fight .fighterObjectsOffset{
+    /* left: -12%; 
+    position: relative; */
+    left: -50%;
+    position: relative;
+}
+
+#fight .gameOfChance{
+    grid-gap: 40px;
+}
+
+.scoreboard table{
+    width: 200px;
+    text-align: center;
+}
+
+@-webkit-keyframes hit {
+    0% {
+        background-color: #feff9d;
+        opacity:1;
+    }
+    21% {
+        background-color: Gray;
+    }
+    22% {
+        background-color: #feff9d;
+    }
+    77% {
+        background-color: #ff767a;
+    }
+    100% {
+        background-color: Gray;
+    }
+}
+
+.hit {
+    -webkit-animation-name: hit;
+    -webkit-animation-duration: 50ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+}    
+
+img#you_lose,
+img#you_win,
+img#polls_were_wrong{
+    /* display: none; */
+}
+
+.bidenFighter,
+.trumpFighter{
+    font-size: 40px;
+}
+
+#restartButton{
+    /* display: none; */
+}
+
+.win{
+    background-color: green;
+}
+
+.lose{
+    background-color: red;
+}

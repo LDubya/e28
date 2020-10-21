@@ -6,21 +6,107 @@
     <title>Project 1</title>
     <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js' defer></script>
     <script src='index.js' defer></script>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-    <script type='text/x-template' id='test-component'>
+    <script type='text/x-template' id='scoreboard-component'>
         <span>
-           {{ title }}
+           {{ outcome }}
        </span>
     </script>
 
-    <div id='app'>
-        <ul>
-            <li v-for='thisItem in listItems'>
-                <test-component :title="thisItem" />
+    <script type='text/x-template' id='fight-component'>
+        <div id="fight" v-bind:class="[{ lose: lose, win : win }]">
+            <div class="title">
+                <h1 class="fightPrompt">
+                    <img id="fightText" src="assets/fight.png" alt="Fight" v-show="gamestate === 'fighting'" />
+                    
+                    <img id="you_lose" src="assets/you_lose.png" alt="You lose" v-show="gamestate === 'ended' && thisOutcome === 'lose'" />
+                    <img id="you_win" src="assets/you_win.png" alt="You win" v-show="gamestate === 'ended' && thisOutcome === 'win'" />
+                    <img id="polls_were_wrong" src="assets/polls_were_wrong.png" alt="Polls were wrong" v-show="gamestate === 'ended' && winner === 'trump'" />
+                </h1>
+            </div>
+            <div class="gameOfChance">
+                <button v-if="!currentStrategy" @click="push">Campaign!</button>
+                <button id="push" v-show="gamestate === 'fighting'" @click="attack">{{currentStrategy}}</button>
+                
+                <button v-show="gamestate === 'ended' && restartVisible" @click="emitNewGame" >{{restartText}}</button>
+            </div>
+            <div class="fighters">
+                <p class="fighterObjects" v-bind:style="{ 'margin-left': bidenPoints + '%' }">
+                    <span class="fighterObjectsOffset">
+                        <span class="bidenFighter">Biden</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="trumpFighter">Trump</span>
+                    </span>
+                </p>
+            </div>
+            <div class="scoreboard">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Biden
+                            </td>
+                            <td>
+                                Trump
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span id="bidenPoints">{{bidenPoints}}</span>
+                            </td>
+                            <td>
+                                <span id="trumpPoints">{{trumpPoints}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tr>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </script>
+
+    <div id='app' v-cloak>
+        
+        <div id="chooseCharacter" v-if="gamestate === 'chooseCharacter'">
+            <div class="title">
+                <!-- <h1>Street Referendum 1</h1> -->
+                <img class="gameTitle" src="assets/street_referendum.png" alt="Street Referendum" />
+                <h2>Choose your fighter</h2>
+            </div>
+            <div class="characters">
+                <button class="biden" @click="goToFight('biden')">Biden</button>
+                <button class="trump" @click="goToFight('trump')">Trump</button>
+            </div>
+            <div class="seizureWarningContainer">
+                <h3 class="seizureWarning"> Seizure warning</h3>
+                <p>
+                    WARNING: This video game may potentially trigger seizures for people with photosensitive epilepsy. 
+                    User discretion advised.
+                </p>
+            </div>
+        </div>
+
+         <!-- fight -->
+        <fight-component 
+            v-if="gamestate != 'chooseCharacter'" 
+            v-on:setgamestate='setgamestate($event)'
+            v-on:addoutcome='updateScoreBoard($event)'
+            v-on:newgame='newgame()'
+            :mycharacter="mycharacter" 
+            :gamestate="gamestate" >
+        </fight-component>
+
+        <p v-if="gameOutcomes.length">Previous Campaigns</p>
+        <ol>
+            <li v-for='outcome in gameOutcomes'>
+                <scoreboard-component :outcome="outcome" />
             </li>
-        </ul>
+        </ol>
         
     </div>
 
