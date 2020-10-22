@@ -8,14 +8,12 @@ const FightComponent = Vue.component('FightComponent', {
             bidenPoints : 50,
             trumpPoints : 50,
             opponentPushInterval : function(){},
-            campaignStrategies : ['Kiss a baby!','Take the high road!','Mudsling!','Shake hands!','Make fun of their hands!',"Make promises you can't keep!",'Blame a predecessor!','Focus on swing states!',"Blame a scapegoat!","Cambridge Analytica!"],
+            campaignStrategies : ['Kiss a baby!','Take the high road!','Mudsling!','Shake hands!','Make fun of their hands!',"Make promises you can't keep!",'Blame a predecessor!','Focus on swing states!',"Blame a scapegoat!","Cambridge Analytica!","Walk out of your interview early!","Dismis Russian interfence!","Say nobody ever gets hacked!","Talk over the opponent during the debate!","Don't answer the debate questions!","Say you won't concede if you lose!"],
             currentStrategy : "Campaign!",
             thisOutcome : false, // win, lose
             winner : "",
             restartText: "4 more years!",
-            restartVisible : false,
-            lose : false,
-            win: false
+            restartVisible : false
         }
     },
     watch : {
@@ -33,14 +31,7 @@ const FightComponent = Vue.component('FightComponent', {
                 }, 200); // if you *really* want a challenge and/or to destroy your mouse, set this to 100 😈
             }
 
-            // although I know it is considered bad practice to manipulate the DOM, 
-            // I want to manipulate a class on the <body>
-            // and I can't mount a Vue instance to the <body>
-            let arena = document.querySelector('body');
-            arena.classList.remove("hit");
-            setTimeout(function() {
-                arena.classList.add("hit");
-            }, 1);
+            this.$emit('hit');
 
             this.currentStrategy = this.campaignStrategies[Math.floor(Math.random() * this.campaignStrategies.length)];
 
@@ -74,11 +65,11 @@ const FightComponent = Vue.component('FightComponent', {
                 }
                 if(this.$props.mycharacter == winner){
                     this.thisOutcome = "win"
-                    this.win = true;
+                    this.$emit('win');
                 }
                 else{
                     this.thisOutcome = "lose"
-                    this.lose = true;
+                    this.$emit('lose');
                     if(winner == "trump"){
                         this.restartText = "Blame massive voter suppression";
                     }
@@ -113,6 +104,9 @@ const FightComponent = Vue.component('FightComponent', {
         emitNewGame : function(){
             this.$emit('newgame');
         },
+        emitReset : function(){
+            this.$emit('reset');
+        }
     }
   });
 const ScoreboardComponent = Vue.component('ScoreboardComponent', {
@@ -129,6 +123,11 @@ let app = new Vue({
         gameOutcomes:[],
         mycharacter : "",
         gamestate : "chooseCharacter", // chooseCharacter, fighting, ended
+        yourScore : 0,
+        computerScore : 0,
+        lose : false,
+        win: false,
+        hit: false
     },
     components: {
         FightComponent: FightComponent,
@@ -141,13 +140,40 @@ let app = new Vue({
         },
         updateScoreBoard : function(outcome){
             this.gameOutcomes.push(outcome);
+            if(outcome == "win"){
+                this.yourScore ++;
+            }
+            else{
+                this.computerScore ++;
+            }
         },
         setgamestate : function(state) {
-            console.log("setgamestate called");
             this.gamestate = state
         },
         newgame : function(){
-            this.gamestate = "chooseCharacter"
+            this.gamestate = "chooseCharacter";
+            this.win = false;
+            this.lose = false;
+        },
+        reset : function(){
+            this.gamestate = "chooseCharacter";
+            this.gameOutcomes = [];
+            this.yourScore = 0;
+            this.computerScore = 0;
+            this.win = false;
+            this.lose = false;
+        },
+        youwin : function(){
+            this.win = true;
+        },
+        youlose: function(){
+            this.lose = true;
+        },
+        pow : function(){
+            this.hit = false;
+            setTimeout(() =>{ 
+                this.hit = true;
+            }, 1);
         }
     }
 })

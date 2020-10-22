@@ -17,7 +17,7 @@
     </script>
 
     <script type='text/x-template' id='fight-component'>
-        <div id="fight" v-bind:class="[{ lose: lose, win : win }]">
+        <div id="fight">
             <div class="title">
                 <h1 class="fightPrompt">
                     <img id="fightText" src="assets/fight.png" alt="Fight" v-show="gamestate === 'fighting'" />
@@ -32,6 +32,7 @@
                 <button id="push" v-show="gamestate === 'fighting'" @click="attack">{{currentStrategy}}</button>
                 
                 <button v-show="gamestate === 'ended' && restartVisible" @click="emitNewGame" >{{restartText}}</button>
+                <button v-show="gamestate === 'ended' && restartVisible" @click="emitReset" >Reset</button>
             </div>
             <div class="fighters">
                 <p class="fighterObjects" v-bind:style="{ 'margin-left': bidenPoints + '%' }">
@@ -70,7 +71,7 @@
         </div>
     </script>
 
-    <div id='app' v-cloak>
+    <div id='app' v-cloak v-bind:class="[{ lose: lose, win : win, hit : hit }]">
         
         <div id="chooseCharacter" v-if="gamestate === 'chooseCharacter'">
             <div class="title">
@@ -97,16 +98,35 @@
             v-on:setgamestate='setgamestate($event)'
             v-on:addoutcome='updateScoreBoard($event)'
             v-on:newgame='newgame()'
+            v-on:reset='reset()'
+            v-on:win='youwin()'
+            v-on:lose='youlose()'
+            v-on:hit='pow()'
             :mycharacter="mycharacter" 
             :gamestate="gamestate" >
         </fight-component>
 
-        <p v-if="gameOutcomes.length">Previous Campaigns</p>
-        <ol>
-            <li v-for='outcome in gameOutcomes'>
-                <scoreboard-component :outcome="outcome" />
-            </li>
-        </ol>
+        <div class="scoreboard" v-if="gameOutcomes.length">
+            <div class="campaigns" >
+                <p>Previous Campaigns</p>
+                <ol>
+                    <li v-for='outcome in gameOutcomes'>
+                        <scoreboard-component :outcome="outcome" />
+                    </li>
+                </ol>
+            </div>
+            <div class="score">
+                <p>Score</p>
+                <ol>
+                    <li>
+                        you: {{yourScore}}
+                    </li>
+                    <li>
+                        computer: {{computerScore}}
+                    </li>
+                </ol>
+            </div>
+        </div>
         
     </div>
 

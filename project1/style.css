@@ -51,7 +51,8 @@ button{
     text-transform: uppercase;
 }
 
-#chooseCharacter .seizureWarningContainer{
+#chooseCharacter .seizureWarningContainer, 
+.scoreboard{
     max-width: 300px;
     margin: 50px auto;
 }
@@ -133,7 +134,8 @@ button{
 img#you_lose,
 img#you_win,
 img#polls_were_wrong{
-    /* display: none; */
+    max-width: 500px;
+    display: block;
 }
 
 .bidenFighter,
@@ -151,4 +153,17 @@ img#polls_were_wrong{
 
 .lose{
     background-color: red;
+}
+
+.scoreboard{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#app{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
