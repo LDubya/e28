@@ -6,6 +6,10 @@
 
 ## Outside resources
 
+Arena backgrounds from: https://graphicriver.net/item/battle-backgrounds-pixel-art/23369613.
+
+Reproduced under fair use for educational purposes. 
+
 ## Notes for instructor
 
 ### Original on-time submission:
