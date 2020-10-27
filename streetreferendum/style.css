@@ -1,0 +1,230 @@
+[v-cloak] { 
+    display: none; 
+} 
+
+/* main styles */
+
+
+#chooseCharacter,
+#fight{
+    margin: auto;
+    margin-top: 50px;
+}
+
+img{
+    width: 80%;
+    margin: 30px auto;
+}
+
+button{
+    padding: 20px;
+    border-radius: 4px;
+    font-size: 30px;
+}
+
+
+/* choose character */
+
+#chooseCharacter{
+    display: grid;
+}
+
+#chooseCharacter .title,
+#chooseCharacter .characters{
+    display: grid;
+    margin: auto;
+}
+
+#chooseCharacter .title{
+    text-align: center;
+}
+
+#chooseCharacter .characters{
+    grid-template-columns: auto auto;
+}
+
+#chooseCharacter .characters{
+    grid-gap: 40px;
+}
+
+#chooseCharacter h3.seizureWarning{
+    text-transform: uppercase;
+}
+
+#chooseCharacter .seizureWarningContainer, 
+.scoreboard{
+    max-width: 300px;
+    margin: 50px auto;
+}
+
+
+/* fight  */
+
+#fight{
+    display: grid;
+}
+
+#fight .title,
+#fight .gameOfChance,
+#fight .scoreboard,
+#fight .fighters{
+    display: flex;
+    margin: auto;
+}
+
+.fightPrompt{
+    text-align: center;
+}
+
+#fight .fighters{
+    width: 90%;
+    max-width: 1000px;
+    border: 1px solid #000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+
+    overflow: hidden;
+    background-size: cover;
+    background-position-y: bottom;
+    /* background-image: url('assets/stage.png'); */
+    /* background-image: url('assets/stage2.png'); */
+    /* background-image: url('assets/arena.jpg'); */
+}
+
+#fight .fighterObjects{
+    /* position: relative; */
+    /* left: 50%; */
+    margin: auto;
+    height: 444px;
+    white-space: nowrap;
+}
+
+#fight .fighterObjectsOffset{
+    /* left: -12%; 
+    position: relative; */
+    left: -50%;
+    position: relative;
+    top: 144px;
+}
+
+#fight .gameOfChance{
+    grid-gap: 40px;
+}
+
+.scoreboard table{
+    width: 200px;
+    text-align: center;
+}
+
+@-webkit-keyframes hit {
+    0% {
+        background-color: #feff9d;
+        opacity:1;
+        transform: translate(5px, 10px);
+    }
+    21% {
+        background-color: Gray;
+        transform: rotate(2deg);
+    }
+    22% {
+        background-color: #feff9d;
+    }
+    77% {
+        background-color: #ff767a;
+    }
+    100% {
+        background-color: Gray;
+    }
+}
+
+.hit {
+    -webkit-animation-name: hit;
+    -webkit-animation-duration: 50ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+}    
+
+img#you_lose,
+img#you_win,
+img#polls_were_wrong{
+    max-width: 500px;
+    display: block;
+}
+
+.bidenFighter,
+.trumpFighter{
+    font-size: 40px;
+}
+.bidenFighter img,
+.trumpFighter img{
+    display: inline-block;
+    width: auto;
+}
+
+#restartButton{
+    /* display: none; */
+}
+
+.win{
+    background-color: green;
+}
+
+.lose{
+    background-color: red;
+}
+
+.scoreboard{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: -130px !important;
+    z-index: 9;
+}
+
+#app{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    min-height: 2000px;
+}
+
+.lifebars{
+    max-width: 100%;
+    color: rgb(226 226 226);
+    text-shadow: 0px 0px 4px #000;
+}
+
+.lifebar{
+    width: 300px;
+    height: 20px;
+    background: red;
+}
+
+.health{
+    background: green;
+    height: 100%;
+}
+
+.lifebarsTitle{
+    display: block;
+}
+
+#bidenPoints .lifebar,
+#bidenPoints .health{
+    border-bottom-left-radius: 100px;
+}
+
+#trumpPoints .lifebar,
+#trumpPoints .health{
+    border-bottom-right-radius: 100px;
+}
+
+#trumpPoints .health{
+    float: right;
+}
+
+body{
+    background-color: darkorange;
+}

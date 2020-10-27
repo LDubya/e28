@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <title>Project 1</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js' defer></script>
+    <script src='index.js' defer></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <script type='text/x-template' id='scoreboard-component'>
+        <span>
+           {{ outcome }}
+       </span>
+    </script>
+
+    <script type='text/x-template' id='fight-component'>
+        <div id="fight">
+            <div class="title">
+                <h1 class="fightPrompt">
+                    <img id="fightText" src="assets/fight.png" alt="Fight" v-show="gamestate === 'fighting'" />
+                    
+                    <img id="you_lose" src="assets/you_lose.png" alt="You lose" v-show="gamestate === 'ended' && thisOutcome === 'lose'" />
+                    <img id="you_win" src="assets/you_win.png" alt="You win" v-show="gamestate === 'ended' && thisOutcome === 'win'" />
+                    <img id="polls_were_wrong" src="assets/polls_were_wrong.png" alt="Polls were wrong" v-show="gamestate === 'ended' && winner === 'trump'" />
+                </h1>
+            </div>
+            <div class="gameOfChance">
+                <button v-if="!currentStrategy" @click="push">Campaign!</button>
+                <button id="push" v-show="gamestate === 'fighting'" @click="attack">{{currentStrategy}}</button>
+                
+                <button v-show="gamestate === 'ended' && restartVisible" @click="emitNewGame" >{{restartText}}</button>
+                <button v-show="gamestate === 'ended' && restartVisible" @click="emitReset" >Reset</button>
+            </div>
+            <div class="scoreboard lifebars">
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th th colspan="2">
+                                <h2 class="lifebarsTitle">
+                                    COVID BLAME
+                                </h2>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr>
+                            <td>
+                                Biden
+                            </td>
+                            <td>
+                                Trump
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td>
+                                <span id="bidenPoints">
+                                    <div class="lifebar"><div class="health" v-bind:style="{ 'width': Math.min(bidenPoints, 50) * 2 + '%' }"></div></div>
+                                </span>
+                            </td>
+                            <td>
+                                <span id="trumpPoints">
+                                    <div class="lifebar"><div class="health" v-bind:style="{ 'width': Math.min(trumpPoints, 50) * 2 + '%' }"></div></div>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tr>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="fighters" v-bind:style="{ 'background-position-x': bidenPoints + '%', 'background-image': 'url(assets/' + currentArena + ')' }">
+                <p class="fighterObjects" v-bind:style="{ 'margin-left': bidenPoints + '%' }">
+                    <span class="fighterObjectsOffset">
+                        <span class="bidenFighter"><img src="assets/red_square.png" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="trumpFighter"><img src="assets/red_square.png" /></span>
+                    </span>
+                </p>
+            </div>
+            
+        </div>
+    </script>
+
+    <div id='app' v-cloak v-bind:class="[{ lose: lose, win : win, hit : hit }]">
+        
+        <div id="chooseCharacter" v-if="gamestate === 'chooseCharacter'">
+            <div class="title">
+                <!-- <h1>Street Referendum 1</h1> -->
+                <img class="gameTitle" src="assets/street_referendum.png" alt="Street Referendum" />
+                <h1>OCTOBER EDITION</h1>
+                <h2>Choose your fighter</h2>
+            </div>
+            <div class="characters">
+                <button class="biden" @click="goToFight('biden')">Biden</button>
+                <button class="trump" @click="goToFight('trump')">Trump</button>
+            </div>
+            <div class="seizureWarningContainer">
+                <h3 class="seizureWarning"> Seizure warning</h3>
+                <p>
+                    WARNING: This video game may potentially trigger seizures for people with photosensitive epilepsy. 
+                    User discretion advised.
+                </p>
+
+                <br/>
+                <h3 class="seizureWarning"> Legal</h3>
+                <p>
+                    All rights reserved, except for the things I don't own, which are reproduced under
+                    fair use for educational purposes. Arena backgrounds from:
+                    https://graphicriver.net/item/battle-backgrounds-pixel-art/23369613.
+                </p>
+            </div>
+        </div>
+
+         <!-- fight -->
+        <fight-component 
+            v-if="gamestate != 'chooseCharacter'" 
+            v-on:setgamestate='setgamestate($event)'
+            v-on:addoutcome='updateScoreBoard($event)'
+            v-on:newgame='newgame()'
+            v-on:reset='reset()'
+            v-on:win='youwin()'
+            v-on:lose='youlose()'
+            v-on:hit='pow()'
+            :mycharacter="mycharacter" 
+            :gamestate="gamestate" >
+        </fight-component>
+
+        <div class="scoreboard" v-if="gameOutcomes.length">
+            <div class="campaigns" >
+                <p>Previous Campaigns</p>
+                <ol>
+                    <li v-for='outcome in gameOutcomes'>
+                        <scoreboard-component :outcome="outcome" />
+                    </li>
+                </ol>
+            </div>
+            <div class="score">
+                <p>Score</p>
+                <ol>
+                    <li>
+                        you: {{yourScore}}
+                    </li>
+                    <li>
+                        computer: {{computerScore}}
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>
