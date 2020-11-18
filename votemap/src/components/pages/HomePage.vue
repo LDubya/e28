@@ -5,7 +5,7 @@
             It currently features two of my original maps, each attempting to propose a solution to a design problem.
         </p>
 
-        <homepage-callout :category="'snacks'"></homepage-callout>
+        <homepage-callout></homepage-callout>
     </div>
 </template>
 

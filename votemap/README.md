@@ -34,3 +34,5 @@ This data is processed using the MuddyColor algorithms before being served via m
 After the publicly available API's that I could found either did not have the data available, I ran into some databases published in plaintext on Github which I converted into a read-only public API after some pre-processing for use in this project.
 
 There may be some bugs when zooming in and out of full-screen. And some counties may have blank data due to data being unavailable at this time.
+
+Also note that I used some of the e28 lecture repo as boilerplate to help get accustomed to routing and single file components. 
