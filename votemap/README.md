@@ -32,3 +32,5 @@ This data is processed using the MuddyColor algorithms before being served via m
 1: I decided to go the route of processing a publicly available API, as discussed here: https://github.com/susanBuck/e28-fall20/issues/36#issuecomment-722085083
 
 After the publicly available API's that I could found either did not have the data available, I ran into some databases published in plaintext on Github which I converted into a read-only public API after some pre-processing for use in this project.
+
+There may be some bugs when zooming in and out of full-screen. And some counties may have blank data due to data being unavailable at this time.
