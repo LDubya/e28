@@ -35,4 +35,4 @@ After the publicly available API's that I could found either did not have the da
 
 There may be some bugs when zooming in and out of full-screen. And some counties may have blank data due to data being unavailable at this time.
 
-Also note that I used some of the e28 lecture repo as boilerplate to help get accustomed to routing and single file components. 
+Also note that I used some of the e28 lecture repo as boilerplate to help get accustomed to routing and single file components.

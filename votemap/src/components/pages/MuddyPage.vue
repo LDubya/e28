@@ -34,7 +34,6 @@ require('highcharts/modules/data')(Highcharts);
 export default {
     data() {
         return {
-            mapData: {},
             downloaded: false,
         };
     },
@@ -54,7 +53,6 @@ export default {
         },
     },
     mounted: function () {
-        // this.mapData = "";
         this.generateMap();
     },
 };
