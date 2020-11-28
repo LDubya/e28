@@ -72,7 +72,6 @@ export default {
                     mapPoint.properties['hc-key'].toUpperCase().substr(3, 2);
             });
 
-            document.getElementById('container').innerHTML = 'Rendering map...';
 
             // Create the map
             setTimeout(function () { // Otherwise innerHTML doesn't update
