@@ -1,0 +1,49 @@
+===> Detecting system
+* Setup script version: 1.0.4
+* Server: local
+* PHP executable: /Applications/XAMPP/xamppfiles/bin/php
+* API directory: /Applications/XAMPP/xamppfiles/htdocs/e28/e28-api/
+* Core directory: /Applications/XAMPP/xamppfiles/htdocs/e28/e28-api/core/
+* Public directory: /Applications/XAMPP/xamppfiles/htdocs/e28/e28-api/core/public/
+
+===> Updating e28-api-core
+Cloning into '.'...
+remote: Enumerating objects: 9226, done.
+remote: Counting objects: 100% (9226/9226), done.
+remote: Compressing objects: 100% (6059/6059), done.
+remote: Total 9226 (delta 3078), reused 9035 (delta 2887), pack-reused 0
+Receiving objects: 100% (9226/9226), 10.11 MiB | 1.52 MiB/s, done.
+Resolving deltas: 100% (3078/3078), done.
+Updating files: 100% (7307/7307), done.
+
+===> Setting up database
+Created /core/database/database.sqlite
+
+===> Laravel initial setup
+Local: Setting write permissions on directories that Apache needs write access to
+Creating environment file (.env)
+Generating app key
+Application key set successfully.
+
+===> Expected Virtual Host:
+
+<VirtualHost *:80>
+    ServerName e28-api.loc
+    DocumentRoot /Applications/XAMPP/xamppfiles/htdocs/e28/e28-api/core/public/
+    <Directory /Applications/XAMPP/xamppfiles/htdocs/e28/e28-api/core/public/>
+        AllowOverride All
+        Options -Indexes
+        Require all granted
+    </Directory>
+</VirtualHost>
+
+
+===> Build API
+Resources created: 
+* product
+* favorite
+
+Seeds run: 
+* product (10 rows added)
+* favorite (2 rows added)
+* user (2 rows added)
