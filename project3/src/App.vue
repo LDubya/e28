@@ -24,11 +24,15 @@
         <router-view
             v-on:render-map='renderMap($event)'
         ></router-view>
+
+        <citations></citations>
+
     </div>
 </template>
 
 <script>
 // import { axios } from '@/app.js';
+import Citations from '@/components/Citations.vue';
 
 const Highcharts = require('highcharts/highmaps');
 require('highcharts/modules/data')(Highcharts);
@@ -39,6 +43,9 @@ import { usAllAll } from '@/us-all-all.js'; // US map county-level SVG
 
 export default {
     name: 'App',
+    components: {
+        'citations': Citations,
+    },
     data() {
         return {
             /* Store links in an array to maintain order */
@@ -147,7 +154,7 @@ export default {
         },
     },
     mounted() {
-    },
+    }
 };
 </script>
 

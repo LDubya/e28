@@ -7,6 +7,8 @@ import HomePage from '@/components/pages/HomePage.vue';
 import NeutralizingPage from '@/components/pages/NeutralizingPage.vue';
 import MuddyPage from '@/components/pages/MuddyPage.vue';
 
+import store from '@/common/store' // make the store available to the whole app
+
 Vue.config.productionTip = false;
 
 
@@ -24,5 +26,6 @@ const router = new VueRouter({
 
 new Vue({
     router, // equivalent to router: router,
+    store,
     render: h => h(App),
 }).$mount('#app')
