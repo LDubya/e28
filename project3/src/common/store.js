@@ -1,23 +1,28 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { axios } from '@/app.js';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        citations: ["a","b","c","d"], // will have a "citations" list, that allows users to cite my infographics. 
+        user: null 
+        // using Vuex to locally persist the user data, as opposed to directly using Cookies / LocalStorage.
+        // Gosh this is an extremely light usage of Vuex... 
+        // Maybe in the future the site can have more features that make more use of Vuex.
     },
     mutations : {
-        addCitation : (state, infographic) => {
-            if( state.citations.indexOf(infographic) == -1 ){
-                state.citations.push(infographic);
-            }
-        },
-        removeCitation : (state, infographic) => {
-            let citationIndex = state.citations.indexOf(infographic);
-            if(citationIndex > -1){
-                delete state[citationIndex]
-            }
+        setUser(state, payload) {
+            state.user = payload;
+        }
+    },
+    actions : {
+        authUser(context) {
+            axios.post('auth').then((response) => {
+                if (response.data.authenticated) {
+                    context.commit('setUser', response.data.user);
+                }
+            });
         }
     }
 })

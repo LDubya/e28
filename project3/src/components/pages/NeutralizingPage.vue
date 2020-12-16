@@ -24,12 +24,21 @@
             <p><a href="https://medium.com/matter/the-trouble-with-the-purple-election-map-31e6cb9f1827" target="_blank">The Trouble with the Purple Election Map</a></p>
         </div>
 
+        <div v-if="user">
+            <hr />
+            <h2>
+                Cite this:
+            </h2>
+
+            <p>
+                [ MLA citation for this infographic ]
+            </p>
+        </div>
+
     </div>
 </template>
 
 <script>
-// import { axios } from '@/app.js';
-
 
 const Highcharts = require('highcharts/highmaps');
 require('highcharts/modules/data')(Highcharts);
@@ -39,6 +48,11 @@ export default {
         return {
             downloaded : false,
         };
+    },
+    computed : {
+        user() {
+            return this.$store.state.user;
+        }
     },
     methods: {
         generateMap() {

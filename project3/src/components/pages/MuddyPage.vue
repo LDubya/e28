@@ -23,6 +23,18 @@
             </h3>
             <p><a href="https://stemlounge.com/muddy-america-color-balancing-trumps-election-map-infographic/" target="_blank">Muddy America : Color Balancing The Election Map - Infographic</a></p>
         </div>
+
+        <div v-if="user">
+            <hr />
+            <h2>
+                Cite this:
+            </h2>
+
+            <p>
+                [ MLA citation for this infographic ]
+            </p>
+        </div>
+
     </div>
 </template>
 
@@ -36,6 +48,11 @@ export default {
         return {
             downloaded: false,
         };
+    },
+    computed : {
+        user() {
+            return this.$store.state.user;
+        }
     },
     methods: {
         generateMap() {

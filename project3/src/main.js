@@ -6,6 +6,7 @@ import HomePage from '@/components/pages/HomePage.vue';
 
 import NeutralizingPage from '@/components/pages/NeutralizingPage.vue';
 import MuddyPage from '@/components/pages/MuddyPage.vue';
+import AccountPage from '@/components/pages/AccountPage.vue';
 
 import store from '@/common/store' // make the store available to the whole app
 
@@ -20,7 +21,8 @@ const router = new VueRouter({
         { path: '/', component: HomePage },
 
         { path: '/neutralizing', component: NeutralizingPage },
-        { path: '/muddy', component: MuddyPage }
+        { path: '/muddy', component: MuddyPage },
+        { path: '/account', component: AccountPage }
     ],
 })
 
