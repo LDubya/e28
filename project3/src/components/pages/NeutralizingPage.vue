@@ -18,22 +18,32 @@
 
         <div v-if="downloaded">
             <p>Note: Alaska borough-level vote data not yet available</p>
-            <h3>
-                Information about the Neutralizing Map:
-            </h3>
-            <p><a href="https://medium.com/matter/the-trouble-with-the-purple-election-map-31e6cb9f1827" target="_blank">The Trouble with the Purple Election Map</a></p>
+    
+
+
+            <div v-if="user">
+                <hr />
+                <h3>
+                    Neutralizing Map Specification:
+                </h3>
+                <p><a href="https://medium.com/matter/the-trouble-with-the-purple-election-map-31e6cb9f1827"
+                        target="_blank">The Trouble with the Purple Election Map</a></p>
+                <h2>
+                    Cite this:
+                </h2>
+
+                <p>
+                    <em>
+                        "The Trouble with the Purple Election Map" (MATTER, 2014) by Larry Weru -
+                        https://medium.com/matter/the-trouble-with-the-purple-election-map-31e6cb9f1827
+                    </em>
+                </p>
         </div>
 
-        <div v-if="user">
-            <hr />
-            <h2>
-                Cite this:
-            </h2>
 
-            <p>
-                [ MLA citation for this infographic ]
-            </p>
         </div>
+
+        
 
     </div>
 </template>

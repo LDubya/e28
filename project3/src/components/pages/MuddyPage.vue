@@ -15,25 +15,30 @@
                 </div>
             </div>
         </div>
-
         <div v-if="downloaded">
             <p>Note: Alaska borough-level vote data not yet available</p>
-            <h3>
-                Information about the Muddy Map:
-            </h3>
-            <p><a href="https://stemlounge.com/muddy-america-color-balancing-trumps-election-map-infographic/" target="_blank">Muddy America : Color Balancing The Election Map - Infographic</a></p>
+            
+            <div v-if="user">
+                <hr />
+                <h3>
+                    Muddy Map specification:
+                </h3>
+                <p><a href="https://stemlounge.com/muddy-america-color-balancing-trumps-election-map-infographic/"
+                        target="_blank">Muddy America : Color Balancing The Election Map - Infographic</a></p>
+                <h2>
+                    Cite this:
+                </h2>
+
+                <p>
+                    <em>
+                        "Muddy America: Color Balancing the Election Map &mdash; Infographic" (STEM Lounge, 2019) by Larry Weru
+                        - https://stemlounge.com/muddy-america-color-balancing-trumps-election-map-infographic/
+                    </em>
+                </p>
+            </div>
         </div>
 
-        <div v-if="user">
-            <hr />
-            <h2>
-                Cite this:
-            </h2>
-
-            <p>
-                [ MLA citation for this infographic ]
-            </p>
-        </div>
+        
 
     </div>
 </template>

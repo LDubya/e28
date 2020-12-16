@@ -1,16 +1,18 @@
 <template>
     <div id="account-page">
+
+        <small>
+            Logged in users have access to in-depth formal design specifications for each infographic, as well as citations for easy copy-and-paste.
+            <!-- 
+                One perk for logged in users is easy MLA citations. 
+                Sure they could go through the source code to find them, but the point is to make things convenient for them. 
+                They're not really something that must be securely stored on the backend, nor are they something that changes per user. 
+                Being logged in just makes the site more convenient for you than if you weren't logged in. 
+            -->
+        </small>
+
         <div v-if="user">
             <h2 data-test="welcome-message">Hi, {{ user.name }}!</h2>
-            <p>
-                As a logged in user, you have access to easy copy-and-paste citations on the bottom of each infographic.
-                <!-- 
-                    One perk for logged in users is easy MLA citations. 
-                    Sure they could go through the source code to find them, but the point is to make things convenient for them. 
-                    They're not really something that must be securely stored on the backend, nor are they something that changes per user. 
-                    Being logged in just makes the site more convenient for you than if you weren't logged in. 
-                -->
-            </p>
 
             <button @click="logout" data-test="logout-button">Logout</button>
 
@@ -22,7 +24,7 @@
             <div>
                 <label>
                     Email:
-                    <input type="text" data-test="email-input" v-model="data.email" />
+                    <input type="email" data-test="email-input" v-model="data.email" />
                 </label>
             </div>
             <div>
@@ -52,12 +54,12 @@ export default {
         return {
             // Users are invite-only, Gmail Beta style. There is no open user registration. For educational purposes, a user is pre-filled.
             // jill@harvard.edu/asdfasdf is one of the seed users from the e28-api/seeds/user.json
+            // one improvement, for a future version could be to switch this over to HTTPS, and enable users to request an invite.
             data: {
                 email: 'jill@harvard.edu',
                 password: 'asdfasdf'
             },
-            errors: null,
-            favorites: []
+            errors: null
         };
     },
     computed: {
